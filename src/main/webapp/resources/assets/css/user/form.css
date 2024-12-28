@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Pen+Script&display=swap');
+  
+body {
+  font-family: "Nanum Gothic", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+}
+
+.form-container {
+  background: #fff;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* max-width: 800px; */
+  width: 100%;
+  min-height: 650px;
+}
+
+h2 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.title-underline {
+  border: none;
+  border-bottom: 2px solid #007bff;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.button-area {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  gap: 3px;
+}
+
+.button-area input[type="button"],
+.button-area input[type="submit"] {
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-area input[type="button"]:hover
+.button-area input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  width: 80px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.form-group input,
+.form-group select {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
