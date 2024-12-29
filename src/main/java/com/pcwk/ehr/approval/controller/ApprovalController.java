@@ -265,9 +265,6 @@ public class ApprovalController {
 		inVO.setApproval_doc_no(param.getApproval_doc_no());
 		
 		int sessionUserId = user.getUserId();
-		System.out.println("param.getApproval_user_id(): " + param.getApproval_user_id());
-		System.out.println("param.getApproval_doc_no(): " + param.getApproval_doc_no());
-		System.out.println("sessionUserId: " + sessionUserId);
 		
 		int flag = approvalService.doApprove(inVO, sessionUserId);
 		

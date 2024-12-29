@@ -21,7 +21,7 @@
 			<li><a href = "">게시판</a></li>
 			<li><a href = "">일정관리</a></li>
 			<li><a href = "${CP}/approval/doRetrieve.do">전자결재</a></li>  
-			<li><a href = "">주소록</a></li>
+			<li><a href = "${CP}/contact/doRetrieve.do">주소록</a></li>
 		
 		<c:if test="${sessionScope.user.position != 'ADMINISTRATOR'}">
           <li><a href = "${CP}/user/myPage.do">마이페이지</a></li>

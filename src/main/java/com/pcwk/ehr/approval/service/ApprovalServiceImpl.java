@@ -73,10 +73,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 				flag = 2;
 			}	
 		}
-		
-		System.out.println("checkValidity: " + checkValidity(inVO, sessionUserId));
-		System.out.println("count: " + count);
-		System.out.println("flag: " + flag);
 
 		return flag;
 	}

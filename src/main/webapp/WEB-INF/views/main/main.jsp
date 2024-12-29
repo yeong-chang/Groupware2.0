@@ -9,7 +9,7 @@ session값: ${sessionScope.user }
 <head>
 <meta charset="UTF-8">
 <link rel ="stylesheet" href = "/ehr/resources/assets/css/main/main.css?date=<%=new Date()%>">
-<link rel ="stylesheet" href = "/ehr/resources/assets/css/main/main.css?date=<%=new Date()%>">
+<!-- <link rel ="stylesheet" href = "/ehr/resources/assets/css/main/main.css?date=<%=new Date()%>"> -->
 <style>
 
  </style>

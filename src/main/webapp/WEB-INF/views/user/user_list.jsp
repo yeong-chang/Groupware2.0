@@ -120,7 +120,22 @@
 							<tr title="더블클릭하면 상세 정보를 볼 수 있습니다.">
 							    <td class="table-cell text-center">${vo.getNo() }</td>
 								<td class="table-cell text-center">${vo.userId}</td>
-								<td class="table-cell text-left highlight">${vo.deptNo}</td>
+								<td class="table-cell text-left highlight">
+								    <c:choose>
+								        <c:when test = "${vo.deptNo == 1000}">
+								            SW 개발
+								        </c:when>								        
+								        <c:when test = "${vo.deptNo == 2000}">
+								                    마케팅
+								        </c:when>								        
+								        <c:when test = "${vo.deptNo == 3000 }">
+								                    인사/총무
+								        </c:when>								        
+								        <c:otherwise>
+								            ${vo.deptNo }
+								        </c:otherwise>
+							        </c:choose>
+							    </td>
 								<td class="table-cell text-center">${vo.supUserId}</td>
 								<td class="table-cell text-center">${vo.name}</td>
 								<td class="table-cell text-center">${vo.password}</td>
