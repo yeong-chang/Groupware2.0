@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 메인</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 210px;
+        display: flex;
+    }
+    .container-fluid {
+        flex-grow: 1;
+        background-color: #ffffff;
+        height: 60px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .container-fluid:hover {
+        background-color: #000000;
+        color: #00ff00;
+    }
+    .sidebar {
+        width: 200px;
+        background-color: #f1f1f1;
+        height: 100vh;
+        padding: 20px;
+    }
+    .sidebar h2 {
+        margin-top: 0;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .main-content {
+        flex-grow: 1;
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>게시판 메뉴</h2>
+            <ul>
+                <li><a href="boardList.jsp" class="container-fluid">공지 게시판</a></li>
+                <li><a href="boardWrite.jsp" class="container-fluid">자유 게시판</a></li>
+                <li><a href="boardWrite.jsp" class="container-fluid">부서 게시판</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

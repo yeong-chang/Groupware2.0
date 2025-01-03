@@ -51,6 +51,11 @@ public class UserController {
 	@ResponseBody
 	public String doSave(UserVO param) throws SQLException{ 
 		String jsonString = "";
+		System.out.println("param.getUserId(): " +param.getUserId());
+		System.out.println("param.getDeptNo(): " +param.getDeptNo());
+		System.out.println("param.getName(): " +param.getName());
+		System.out.println("param.getPosition(): " +param.getPosition());
+		System.out.println("param.getPhoneNo(): " +param.getPhoneNo());
 		
 		int flag = userService.doSave(param);
 		
