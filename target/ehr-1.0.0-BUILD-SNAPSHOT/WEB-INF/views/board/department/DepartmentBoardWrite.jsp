@@ -17,7 +17,7 @@
             <input type="text" id="title" name="title" placeholder="게시글 제목을 입력하세요" required>
 
             <label for="content">내용</label>
-            <textarea id="content" name="content" rows="10" placeholder="게시글 내용을 입력하세요" required></textarea>
+            <textarea id="content" name="content" rows="10" placeholder="게시글 내용을 입력하세요" ></textarea>
 
             <label for="author">작성자 ID</label>
             <input type="text" id="author" name="author"value = "${vo.userId }" readonly = "readonly" required>

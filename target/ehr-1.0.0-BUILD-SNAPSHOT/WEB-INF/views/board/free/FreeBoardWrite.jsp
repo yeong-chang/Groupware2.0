@@ -6,6 +6,10 @@
     <title>자유 게시글 작성</title>
     <link rel="stylesheet" type="text/css" href="/ehr/resources/assets/css/board/boardwrite.css">
     <link rel="stylesheet" type="text/css" href="/ehr/resources/assets/css/board/simplemde_min.css"> <!-- SimpleMDE CSS -->
+    <script src="/ehr/resources/assets/js/jquery_3_7_1.js"></script> <!-- jQuery 스크립트 (AJAX 송신을 위해 필요) -->
+    <script src="/ehr/resources/assets/js/cmn/common.js"></script> <!-- 공통 Util -->
+    <script src="/ehr/resources/assets/js/user/user_myPage.js"></script> <!-- 서버 전송 -->
+
     <script src="/ehr/resources/assets/js/board/simplemde_min.js"></script> <!-- SimpleMDE JS -->
 </head>
 <body>
@@ -17,9 +21,9 @@
             <input type="text" id="title" name="title" placeholder="게시글 제목을 입력하세요" required>
 
             <label for="content">내용</label>
-            <textarea id="content" name="content" rows="10" placeholder="게시글 내용을 입력하세요" required></textarea>
+            <textarea id="content" name="content" rows="10" placeholder="게시글 내용을 입력하세요" ></textarea>
 
-            <label for="author">작성자 ID</label>
+            <label for="author">등록자</label>
             <input type="text" id="author" name="author" value = "${vo.userId }" readonly = "readonly" required>
 
             <button type="submit">작성 완료</button>
