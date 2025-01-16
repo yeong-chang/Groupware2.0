@@ -6,11 +6,11 @@ import com.pcwk.ehr.chat.domain.ChatRoomVO;
 import com.pcwk.ehr.cmn.DTO;
 import com.pcwk.ehr.user.domain.UserVO;
 
-public interface ChatRoomDao {
+import javax.servlet.http.HttpSession;
 
-	int createRoom(ChatRoomVO inVO);
-	
-	int deleteRoom(ChatRoomVO inVO);
-	
-	List<ChatRoomVO> doRetrieve(DTO dto);
+public interface ChatRoomDao {
+	List ShowChatRoom(int userId);
+	List<UserVO> getAllUsers();
+	int CreateChatRoom(ChatRoomVO vo);
+	int DeleteChatRoom(ChatRoomVO vo);
 }

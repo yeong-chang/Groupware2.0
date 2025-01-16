@@ -10,7 +10,7 @@
 <script src = "/ehr/resources/assets/js/cmn/common.js"></script> <!-- 공통 Util -->
 <script src = "/ehr/resources/assets/js/chat/chat.js?date=<%=new Date()%>"></script> <!--  서버 전송 -->
 <script>
-    const sessionUserId = '${sessionScope.user.userId}'; // JSP에서 sessionScope 값 전달 to javascript    
+   /* const sessionUserId = '${sessionScope.user.userId}'; // JSP에서 sessionScope 값 전달 to javascript    */
 </script>
 <title>메신저</title>
 </head>

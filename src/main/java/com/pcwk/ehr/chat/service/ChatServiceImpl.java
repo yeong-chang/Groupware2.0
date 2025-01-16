@@ -12,17 +12,4 @@ import com.pcwk.ehr.chat.domain.ChatVO;
 @Service
 public class ChatServiceImpl implements ChatService {
 
-	@Autowired
-	ChatDao chatDao;
-	
-	@Override
-	public int sendChat(ChatVO inVO) throws SQLException {
-		return chatDao.sendChat(inVO);
-	}
-
-	@Override
-	public List<ChatVO> getMessagesByRoomId(int roomId) throws SQLException {
-		return chatDao.getMessagesByRoomId(roomId);
-	}
-
 }

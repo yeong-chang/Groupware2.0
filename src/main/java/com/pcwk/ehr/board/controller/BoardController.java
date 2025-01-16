@@ -167,14 +167,7 @@ public class BoardController {
         UserVO userVO = new UserVO();
         String view = "board/free/FreeBoardList";
         SearchVO search = new SearchVO();
-        /*try {
-       	 List<BoardVO> boardList = boardService.selectFreeBoardList();
-            model.addAttribute("boardList", boardList); 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-       	model.addAttribute("uservo", userVO);
-		model.addAttribute("vo", boardVO);*/
+
         String pageNoString = StringUtil.nvl(req.getParameter("pageNo"), "1");
         String pageSizeString = StringUtil.nvl(req.getParameter("pageSize"), "10");
 

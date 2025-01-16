@@ -4,15 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.pcwk.ehr.chat.domain.ChatVO;
+import com.pcwk.ehr.chat.service.ChatService;
+import com.pcwk.ehr.user.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.google.gson.Gson;
 import com.pcwk.ehr.chat.domain.ChatRoomVO;
@@ -27,71 +27,61 @@ public class ChatRoomController {
 
 	@Autowired
 	private ChatRoomService chatRoomService;
-	
-	@GetMapping("/create_chatroom_index.do")
-	public String createRoomIndex() {
-		String viewName = "chatroom/chatroom_reg";
-		
-		return viewName;
-	}
-	
-	@RequestMapping(value = "/doRetrieve.do", method = RequestMethod.GET)
-	public String doRetrieve(HttpServletRequest req, Model model) throws Exception{
+
+	@GetMapping("show.do")
+	public String ShowChatRoom(Model model,HttpSession session) {
 		String viewName = "chatroom/chatroom_list";
-		
-		SearchVO search = new SearchVO();
-		
-		String pageNoString = StringUtil.nvl(req.getParameter("pageNo"), "1");
-		String pageSizeString = StringUtil.nvl(req.getParameter("pageSize"), "10");
-		
-		int pageNo = Integer.parseInt(pageNoString);
-		int pageSize = Integer.parseInt(pageSizeString);
-		
-		//데이터가 null이면, ""
-		String searchDiv = StringUtil.nvl(req.getParameter("searchDiv"), "");
-		String searchWord = StringUtil.nvl(req.getParameter("searchWord"), "");
-		
-		search.setPageNo(pageNo);
-		search.setPageSize(pageSize);
-		search.setSearchDiv(searchDiv);
-		search.setSearchWord(searchWord);
-	
-		List<ChatRoomVO> list = chatRoomService.doRetrieve(search); 
-		
-		//총 글수
-		int totalCnt = 0;
-		if (null != list && list.size() > 0) {
-			ChatRoomVO vo = list.get(0);
-    		totalCnt = vo.getTotalCnt();
-	    }
-		
-		model.addAttribute("totalCnt", totalCnt);
-		model.addAttribute("list", list);
-		model.addAttribute("search", search);
-		
+		UserVO user = (UserVO) session.getAttribute("user");
+		try {
+			// 서비스에서 채팅방 목록을 가져옴
+			List<ChatRoomVO> chatRoomList = chatRoomService.ShowChatRoom(user.getUserId());
+			// 모델에 chatRoomList 추가
+			model.addAttribute("chatRoomList", chatRoomList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return viewName;
 	}
-	
-	@RequestMapping(value = "/createRoom.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	@ResponseBody
-	public String createRoom(ChatRoomVO param) throws SQLException{
-		String jsonString = "";
-		
-		int flag = chatRoomService.createRoom(param);
-		
-		System.out.println("flag: " + flag);
-		String message = "";
-		
-		if(flag == 1) {
-			message = param.getRoomId() + "번 방을 생성하였습니다.";
-		} else {
-			message = param.getRoomId() + "번 방 생성에 실패하였습니다.";
-		}
-		
-		MessageVO messageVO = new MessageVO(flag, message);
-		jsonString = new Gson().toJson(messageVO);
-		
-		return jsonString;
+
+	@GetMapping("create_chatroom_index.do")
+	public String showChatRoomForm(Model model) {
+		List<UserVO> userList = chatRoomService.getAllUsers(); // 유저 목록을 가져오는 서비스 호출
+		model.addAttribute("userList", userList);  // userList를 모델에 추가
+		return "chatroom/chatroom_reg";
 	}
-	
+
+	@PostMapping("createChatRoom.do")
+	public String createChatRoom(@RequestParam("userId1") String userId1, HttpSession session) {
+		// 세션에서 로그인한 유저의 ID를 받아오기
+		UserVO user = (UserVO) session.getAttribute("user");
+
+		// 받아온 값으로 채팅방 생성 로직 실행
+		// 예를 들어, 채팅방 생성 서비스 호출
+		try {
+			// 서비스에서 채팅방 생성 로직 처리
+			ChatRoomVO chatRoomVO = new ChatRoomVO();
+			chatRoomVO.setSenderId(user.getUserId());  // 로그인한 사용자의 senderId
+			chatRoomVO.setReceiverId(Integer.parseInt(userId1)); // 상대방의 userId1
+
+			// 채팅방 생성 서비스 호출
+			chatRoomService.CreateChatRoom(chatRoomVO);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// 채팅방 생성 후 리다이렉트 또는 이동할 페이지로
+		return "redirect:/chatroom/show.do";  // 채팅방 목록 페이지로 리다이렉트
+	}
+
+
+	@PostMapping("deletechatroom.do")
+	public String DeleteChatRoom(@ModelAttribute("chatVO") ChatRoomVO chatRoomVO, HttpSession session){
+		try {
+			chatRoomService.DeleteChatRoom(chatRoomVO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 }

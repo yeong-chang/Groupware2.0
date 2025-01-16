@@ -17,7 +17,7 @@
 		<li><a href = "${CP}/calendar/show.do">일정관리</a></li>
 		<li><a href = "${CP}/approval/doRetrieve.do">전자결재</a></li>  
 		<li><a href = "${CP}/contact/doRetrieve.do">주소록</a></li>
-		<li><a href = "${CP}/chatroom/doRetrieve.do">메신저</a></li>
+		<li><a href = "${CP}/chatroom/show.do">메신저</a></li>
 	
 	<c:if test="${sessionScope.user.position != 'ADMINISTRATOR'}">
 	        <li><a href = "${CP}/user/myPage.do">마이페이지</a></li>
