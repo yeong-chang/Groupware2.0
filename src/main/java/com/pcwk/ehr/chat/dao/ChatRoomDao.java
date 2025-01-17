@@ -12,5 +12,5 @@ public interface ChatRoomDao {
 	List ShowChatRoom(int userId);
 	List<UserVO> getAllUsers();
 	int CreateChatRoom(ChatRoomVO vo);
-	int DeleteChatRoom(ChatRoomVO vo);
+	int DeleteChatRoom(int roomId);
 }

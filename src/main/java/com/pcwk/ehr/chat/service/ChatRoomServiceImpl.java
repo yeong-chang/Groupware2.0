@@ -31,7 +31,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
 	}
 
 	@Override
-	public int DeleteChatRoom(ChatRoomVO vo) {
-		return chatRoomDao.DeleteChatRoom(vo);
+	public int DeleteChatRoom(int roomId) {
+		return chatRoomDao.DeleteChatRoom(roomId);
 	}
 }

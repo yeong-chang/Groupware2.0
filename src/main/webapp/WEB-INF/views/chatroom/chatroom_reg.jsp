@@ -113,6 +113,38 @@
         .form-container .buttons input:last-child:hover {
             background-color: #c0392b;
         }
+        option {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #ffffff;
+            color: #34495e;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        option:hover {
+            background-color: #f0f0f0;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #34495e;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: #f9f9f9;
+        }
+
+
     </style>
 
 </head>

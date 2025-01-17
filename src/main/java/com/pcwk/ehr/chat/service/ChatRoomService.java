@@ -9,5 +9,5 @@ public interface ChatRoomService {
 	List<UserVO> getAllUsers();
 	List ShowChatRoom(int userId);
 	int CreateChatRoom(ChatRoomVO vo);
-	int DeleteChatRoom(ChatRoomVO vo);
+	int DeleteChatRoom(int roomId);
 }

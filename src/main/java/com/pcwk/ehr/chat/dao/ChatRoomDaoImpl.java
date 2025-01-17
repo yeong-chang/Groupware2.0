@@ -88,14 +88,14 @@ public class ChatRoomDaoImpl implements ChatRoomDao {
 	}
 
 	@Override
-	public int DeleteChatRoom(ChatRoomVO vo) {
+	public int DeleteChatRoom(int roomId) {
 		int flag = 0;
 		StringBuilder sb = new StringBuilder();
-
+		ChatRoomVO vo = new ChatRoomVO();
 		sb.append("DELETE FROM messenger \n");
 		sb.append("WHERE chat_room_id = ? \n"); // chat_room_id를 기준으로 삭제
 
-		Object [] args = {vo.getRoomId()};
+		Object [] args = {roomId};
 		flag = this.jdbcTemplate.update(sb.toString(),args);
 
 		return flag;

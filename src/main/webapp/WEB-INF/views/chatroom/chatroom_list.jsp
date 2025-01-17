@@ -17,7 +17,7 @@
     <script src = "${CP}/resources/assets/js/cmn/common.js"></script> <!-- 공통 Util -->
     <script src = "${CP}/resources/assets/js/chatroom/chatroom_list.js?date=<%=new Date()%>"></script> <!--  서버 전송 -->
     <script>
-        const sessionUserId = '${sessionScope.user.userId}'; // JSP에서 sessionScope 값 전달 to javascript
+
     </script>
     <title>Insert title here</title>
 </head>
@@ -38,34 +38,37 @@
             <input type="button" value="조회" id="doRetrieveBtn">
             <input type="button" value="등록" id="moveToRegBtn">
         </div>
-        <table border="1" id="listTable" class="table">
-            <thead>
-            <tr>
-                <th class="table-head">방 번호</th>
-                <th class="table-head">ID 1</th>
-                <th class="table-head">ID 2</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- 데이터가 있을 경우 -->
-            <c:if test="${not empty chatRoomList}">
-                <c:forEach var="chatRoomList" items="${chatRoomList}">
-                    <tr title="더블클릭하면 상세 정보를 볼 수 있습니다.">
-                        <td class="table-cell text-center">${chatRoomList.roomId}</td>
-                        <td class="table-cell text-center">${chatRoomList.senderId}</td>
-                        <td class="table-cell text-center">${chatRoomList.receiverId}</td>
-                    </tr>
-                </c:forEach>
-            </c:if>
-
-            <%--<!-- 데이터가 없을 경우 -->
-            <c:if test="${empty list}">
+        <form action="deletechatroom.do" method="post">
+            <table border="1" id="listTable" class="table">
+                <thead>
                 <tr>
-                    <td colspan="99" class="table-cell text-center">조회된 데이터가 없습니다.</td>
+                    <th class="table-head">선택</th>
+                    <th class="table-head">방 번호</th>
+                    <th class="table-head">ID 1</th>
+                    <th class="table-head">ID 2</th>
                 </tr>
-            </c:if>--%>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:if test="${not empty chatRoomList}">
+                    <c:forEach var="chatRoom" items="${chatRoomList}">
+                        <tr title="더블클릭하면 상세 정보를 볼 수 있습니다.">
+                            <td class="table-cell text-center">
+                                <input type="radio" name="roomId" value="${chatRoom.roomId}">
+                            </td>
+                            <td class="table-cell text-center">${chatRoom.roomId}</td>
+                            <td class="table-cell text-center">${chatRoom.senderId}</td>
+                            <td class="table-cell text-center">${chatRoom.receiverId}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                </tbody>
+            </table>
+
+            <div>
+                <input type="submit" value="삭제">
+            </div>
+        </form>
+
     </div>
 </div>
 </body>

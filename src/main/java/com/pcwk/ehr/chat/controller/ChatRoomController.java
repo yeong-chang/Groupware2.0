@@ -76,12 +76,16 @@ public class ChatRoomController {
 
 
 	@PostMapping("deletechatroom.do")
-	public String DeleteChatRoom(@ModelAttribute("chatVO") ChatRoomVO chatRoomVO, HttpSession session){
+	public String deleteChatRoom(@RequestParam("roomId") int roomIds) {
 		try {
-			chatRoomService.DeleteChatRoom(chatRoomVO);
-		}catch (Exception e) {
+					chatRoomService.DeleteChatRoom(roomIds);
+		} catch (Exception e) {
 			e.printStackTrace();
+			return "redirect:/chatroom/show.do"; // 오류 메시지를 전달하고 목록 페이지로 리다이렉트
 		}
-		return "";
+		System.out.println("Deleting room with ID: " + roomIds);
+		return "redirect:/chatroom/show.do"; // 성공적으로 삭제 후 채팅방 목록 페이지로 리다이렉트
+
 	}
+
 }
