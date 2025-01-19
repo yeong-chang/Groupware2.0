@@ -30,7 +30,7 @@
 
     <servlet-mapping>
         <servlet-name>appServlet</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <!-- UTF-8 인코딩: POST로 데이터 전달 시 한글 문제 생김! -->

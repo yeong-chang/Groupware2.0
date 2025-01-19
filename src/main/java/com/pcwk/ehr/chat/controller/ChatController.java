@@ -20,5 +20,4 @@ import com.pcwk.ehr.user.domain.UserVO;
 public class ChatController {
 
 
-
 }

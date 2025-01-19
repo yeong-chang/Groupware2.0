@@ -49,7 +49,6 @@ public class ChatRoomDaoImpl implements ChatRoomDao {
 				return chatRoomVO;
 			}
 		});
-
 		return chatRoomList;  // List<ChatRoomVO> 반환
 	}
 

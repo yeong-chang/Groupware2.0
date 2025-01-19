@@ -76,14 +76,14 @@ public class ChatRoomController {
 
 
 	@PostMapping("deletechatroom.do")
-	public String deleteChatRoom(@RequestParam("roomId") int roomIds) {
+	public String deleteChatRoom(@RequestParam("roomId") int roomId) {
 		try {
-					chatRoomService.DeleteChatRoom(roomIds);
+					chatRoomService.DeleteChatRoom(roomId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "redirect:/chatroom/show.do"; // 오류 메시지를 전달하고 목록 페이지로 리다이렉트
 		}
-		System.out.println("Deleting room with ID: " + roomIds);
+		System.out.println("Deleting room with ID: " + roomId);
 		return "redirect:/chatroom/show.do"; // 성공적으로 삭제 후 채팅방 목록 페이지로 리다이렉트
 
 	}
