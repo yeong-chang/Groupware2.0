@@ -7,5 +7,4 @@ import com.pcwk.ehr.chat.domain.ChatVO;
 
 public interface ChatDao {
     int InsertMessage(ChatVO chatVO);
-    List ShowMessage(int roomId);
 }

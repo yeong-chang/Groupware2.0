@@ -20,8 +20,4 @@ public class ChatServiceImpl implements ChatService {
         return chatDao.InsertMessage(chatVO);
     }
 
-    @Override
-    public List ShowMessage(int roomId) {
-        return chatDao.ShowMessage(roomId);
-    }
 }

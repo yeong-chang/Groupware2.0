@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pcwk.ehr.board.domain.BoardVO;
+import com.pcwk.ehr.chat.domain.ChatVO;
 import com.pcwk.ehr.user.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -65,6 +66,41 @@ public class ChatRoomDaoImpl implements ChatRoomDao {
 		});
 	}
 
+	public List<ChatVO> getAllChats(int userId, int roomId) {
+		// 본인한테 오거나 본인이 쓴 메시지만, 특정 채팅방에 해당하는 메시지를 조회하는 SQL
+		String sql = "SELECT MESSAGE_ID, MESSAGE_RECEIVER_ID, MESSAGE_CONTENT, MESSAGE_TIMESTAMP, MESSAGE_SENDER_ID, MESSAGE_ROOM_ID " +
+				"FROM MESSAGE " +
+				"WHERE (MESSAGE_RECEIVER_ID = ? OR MESSAGE_SENDER_ID = ?) " +
+				"AND MESSAGE_ROOM_ID = ? " +
+				"ORDER BY MESSAGE_TIMESTAMP DESC";
+
+		return jdbcTemplate.query(sql, new Object[] { userId, userId, roomId }, new RowMapper<ChatVO>() {
+			@Override
+			public ChatVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ChatVO chat = new ChatVO();
+				chat.setMessageId(rs.getInt("MESSAGE_ID"));
+				chat.setReceiverId(rs.getInt("MESSAGE_RECEIVER_ID"));
+				chat.setContent(rs.getString("MESSAGE_CONTENT"));
+				chat.setTimestamp(rs.getString("MESSAGE_TIMESTAMP"));
+				chat.setSenderId(rs.getInt("MESSAGE_SENDER_ID"));
+				chat.setRoomId(rs.getInt("MESSAGE_ROOM_ID"));
+				return chat;
+			}
+		});
+	}
+
+	/*public List<ChatVO> getAllChat(int userId, int roomId) {
+		String sql = "SELECT MESSAGE_ID, MESSAGE_RECEIVER_ID, MESSAGE_CONTENT, MESSAGE_TIMESTAMP, MESSAGE_SENDER_ID, MESSAGE_ROOM_ID " +
+				"FROM MESSAGE " +
+				"WHERE (MESSAGE_RECEIVER_ID = ? OR MESSAGE_SENDER_ID = ?) " +
+				"AND MESSAGE_ROOM_ID = ? " +
+				"ORDER BY MESSAGE_TIMESTAMP DESC";
+
+		ResultSet rs = null;
+		rs.getString()
+	}*/
+
+
 	@Override
 	public int CreateChatRoom(ChatRoomVO vo) {
 		int flag = 0;
@@ -99,4 +135,18 @@ public class ChatRoomDaoImpl implements ChatRoomDao {
 
 		return flag;
 	}
+
+	@Override
+	public int GetChatRoomId(int roomId) {
+		int flag=0;
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT chat_room_id FROM messenger where chat_room_id = ? \n");
+
+		Object [] args = {roomId};
+		flag = this.jdbcTemplate.update(sb.toString(),args);
+
+		return flag;
+	}
+
+
 }

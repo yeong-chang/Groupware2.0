@@ -2,6 +2,7 @@ package com.pcwk.ehr.chat.service;
 
 import java.util.List;
 
+import com.pcwk.ehr.chat.domain.ChatVO;
 import com.pcwk.ehr.user.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,15 @@ public class ChatRoomServiceImpl implements ChatRoomService{
 	@Override
 	public int DeleteChatRoom(int roomId) {
 		return chatRoomDao.DeleteChatRoom(roomId);
+	}
+
+	@Override
+	public List<ChatVO> getAllChats(int userId, int roomId) {
+		return chatRoomDao.getAllChats(userId, roomId);
+	}
+
+	@Override
+	public int GetChatRoomId(int roomId) {
+		return chatRoomDao.GetChatRoomId(roomId);
 	}
 }

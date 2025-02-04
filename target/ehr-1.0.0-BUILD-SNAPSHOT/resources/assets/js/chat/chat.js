@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded",function() {
   console.log("DOMContentLoaded");
 
@@ -93,3 +94,4 @@ document.addEventListener("DOMContentLoaded",function() {
     })
     loadMessages(roomId);
   });
+*/

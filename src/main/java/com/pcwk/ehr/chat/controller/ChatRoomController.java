@@ -10,6 +10,7 @@ import com.pcwk.ehr.chat.domain.ChatVO;
 import com.pcwk.ehr.chat.service.ChatService;
 import com.pcwk.ehr.user.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,35 @@ public class ChatRoomController {
 
 	@Autowired
 	private ChatRoomService chatRoomService;
+
+	// 채팅방에 들어갈 때
+	@GetMapping("{roomId}")
+	public String enterChatRoom(@PathVariable("roomId") int roomId, Model model, HttpSession session) {
+		String viewName = "chat/chat";
+
+		// 세션에서 현재 로그인한 사용자 정보 가져오기
+		UserVO user = (UserVO) session.getAttribute("user");
+
+		// roomId를 사용하여 채팅방 정보 등을 모델에 담기
+		model.addAttribute("roomId", roomId);
+
+		try {/*
+			int chatRoom = chatRoomService.GetChatRoomId(roomId);*/
+			List<ChatVO> getChat =chatRoomService.getAllChats(user.getUserId(), roomId);
+
+			if (getChat.isEmpty()) {
+				System.out.println("채팅 목록이 비어있습니다.");
+			}
+			model.addAttribute("getChat",getChat);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/chatroom/show.do";
+		}
+
+		return viewName;
+	}
+
 
 	@GetMapping("show.do")
 	public String ShowChatRoom(Model model,HttpSession session) {
